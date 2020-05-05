@@ -1,0 +1,11 @@
+{
+  "department": "Department",
+  "premise": "Premise",
+  "thoroughfare": "Thoroughfare",
+  "locality": "Locality",
+  "administrativeArea": "Administrative Area",
+  "postalCodeOrTown": "Town",
+  "postBox" : "Post box",
+  "postalCode": "Postal code",
+  "postOffice": "Post office"
+}
