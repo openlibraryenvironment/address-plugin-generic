@@ -104,7 +104,7 @@ This would then flag any `required` fields missing data with the text `missing v
 ```
 This will use finalForm's built in `input`. You can pass a custom component here if you wish.
 
-Finally `savedAddress` currently expects an address of the [correct shape](##AddressShape), which it will then pass to `backendToFields` to use as initial values for the fields.
+Finally `savedAddress` currently expects an address of the [correct shape](#address-shape), which it will then pass to `backendToFields` to use as initial values for the fields.
 
 #### Field labels
 Right now we only have internationalised field labels for en_US, and there may be some work to do on your project's end to utilise those. The idea in future is that if you were accessing `address-plugin-usa` fields from France, that you would see "Etat" in place of "State", or if you were accessing the `address-plugin-can` fields from 
