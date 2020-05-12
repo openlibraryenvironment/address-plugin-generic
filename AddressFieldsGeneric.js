@@ -8,6 +8,7 @@ import backendToFields from './backendToFields';
 class AddressFieldsGeneric extends React.Component {
   render() {
     const { name, requiredValidator, savedAddress, textFieldComponent } = this.props;
+    console.log("Saved Address: %o", savedAddress)
     const initialValues = backendToFields(savedAddress);
     return (
       <> 
