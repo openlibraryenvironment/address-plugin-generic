@@ -1,7 +1,6 @@
 import { deleteFieldIfExists, getExistingLineField } from '@folio/address-utils';
 
 const fieldsToBackend = (address) => {
-  console.log("Address in from frontend: %o", address)
   const id = address.id || null;
   const newAddress = {};
   const lines = [];
@@ -60,8 +59,6 @@ const fieldsToBackend = (address) => {
   newAddress.addressLabel = address.addressLabel;
   newAddress.lines = lines;
   newAddress.id = id;
-
-  console.log("Address out: %o", newAddress)
   return newAddress;
 };
 
