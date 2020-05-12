@@ -44,6 +44,8 @@ The particular flavour of address model our backend uses comprises of an `Addres
 ```
 It is heavily recommended that any potential user do some reading of the standard above in order to understand what each of these can mean/be used for.
 
+:warning: This backend setup has an important restriction, in that each address is supposed to be limited to **ONE** of any given type of `AddressLine`. The ways in which the various types can be used is expanded on in the standard. :warning:
+
 ### Backend particulars
 It is worth mentioning here that our backend solution is built in a way such that `POST` requests are cumulative, and so instead of removing a field from a form, we send along the field with a `_delete: true` flag. This will likely not be universal, and so you may need to write your own interpreters for the form's output.
 
@@ -157,3 +159,9 @@ The minimum shape expected by the frontend fields is:
 }
 ```
 with each `AddressLine` being an object on the `lines` array, comprising of an `id`, a `seq`, a `type` object containing a `value` string, and a `value` string itself.
+
+## Other READMEs
+As mentioned above, this is really a _set_ of plugins and components, so I'll include here links to all the specific READMEs for the individual plugins/repos, and attempt to keep it up to date as new ones are added.
+
+ - [address-utils](https://github.com/openlibraryenvironment/address-utils/blob/master/README.md)
+ - [address-plugin-usa](https://github.com/openlibraryenvironment/address-plugin-usa/blob/master/README.md)
