@@ -160,6 +160,11 @@ The minimum shape expected by the frontend fields is:
 ```
 with each `AddressLine` being an object on the `lines` array, comprising of an `id`, a `seq`, a `type` object containing a `value` string, and a `value` string itself.
 
+## Known Issues
+When changing an address' country format to one with more fields, everything _should_ work as expected. However, we currently don't have a built in process to remove fields that a particular format might not include.
+
+For example, filling out a UK address with a `Town` field will place that information into a `postalCodeOrTown` `AddressLine`, but then switching that address to a US one, the field will be missing from the form, but the backend data massagers do not know to remove something from `postalCodeOrTown` if it exists. This is not priority work for now, but shouldn't be too hard to fix.
+
 ## Other READMEs
 As mentioned above, this is really a _set_ of plugins and components, so I'll include here links to all the specific READMEs for the individual plugins/repos, and attempt to keep it up to date as new ones are added.
 
