@@ -68,10 +68,13 @@ and so on. There are some exceptions to this, which individual plugin READMEs sh
 
 #### Props
 `AddressField` takes 4 props:
+- country
 - name
 - requiredValidator
 - savedAddress
 - textFieldComponent
+
+`country` is what the form will use to display correct field names where they happen to differ.
 
 `name` is for use inside an existing form. For example you might want to call:
 
