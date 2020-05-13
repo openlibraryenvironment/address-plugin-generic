@@ -139,6 +139,13 @@ In the cases though where a field is _not_ required, it will do the above if a f
 
 Extra magic might be occur here, but that should be covered in each `address-plugin`'s README.
 
+### listOfSupportedCountries
+This is simply an array, containing a list of countries for which this plugin supports. 
+
+For now this is an Anglicised list of names:
+`["England", "Wales", "Northern Ireland", "Scotland"]` for example. These are what will appear at the bottom of each address as the "Country".
+
+
 ## Address Shape
 
 The minimum shape expected by the frontend fields is:
