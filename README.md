@@ -179,4 +179,6 @@ For example, filling out a UK address with a `Town` field will place that inform
 As mentioned above, this is really a _set_ of plugins and components, so I'll include here links to all the specific READMEs for the individual plugins/repos, and attempt to keep it up to date as new ones are added.
 
  - [address-utils](https://github.com/openlibraryenvironment/address-utils/blob/master/README.md)
- - [address-plugin-usa](https://github.com/openlibraryenvironment/address-plugin-usa/blob/master/README.md)
+ - [address-plugin-north-america](https://github.com/openlibraryenvironment/address-plugin-north-america/blob/master/README.md)
+ - [address-plugin-british-isles](https://github.com/openlibraryenvironment/address-plugin-british-isles/blob/master/README.md)
+
