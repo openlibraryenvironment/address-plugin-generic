@@ -1,4 +1,5 @@
 import addressFields from './AddressFieldsGeneric';
 import fieldsToBackend from './fieldsToBackend';
 import backendToFields from './backendToFields';
-export default { addressFields, fieldsToBackend, backendToFields };
+import listOfSupportedCountries from './listOfSupportedCountries';
+export default { addressFields, fieldsToBackend, backendToFields, listOfSupportedCountries };
