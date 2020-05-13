@@ -1,12 +1,13 @@
 
 
 
+
 # address-plugins
 
-This is a set of react plugins designed to try and make internationalisation of address forms as easy and simple as possible. It was designed to mesh with a backend inspired by the [OASIS CIQ TC Standard xAL.](https://www.immagic.com/eLibrary/ARCHIVES/TECH/OASIS/XAL_V2.PDF)
+This is a set of React plugins designed to try and make internationalisation of address forms as easy and simple as possible. It was designed to mesh with a backend inspired by the [OASIS CIQ TC Standard xAL.](https://www.immagic.com/eLibrary/ARCHIVES/TECH/OASIS/XAL_V2.PDF)
 
 ## Installation
-These are react npm plugins, and as such, you will need to include them in you project's package.json file.
+These are React NPM plugins, and as such, you will need to include them in you project's package.json file.
 The minimum import to get a form up and running is:
 ```
 "@folio/address-utils": "^1.0.0",
@@ -22,7 +23,7 @@ import  pluginGeneric from '@folio/address-plugin-generic';
 and call `<pluginGeneric.addressFields>`, say, to use the component `AddressFields` for this plugin.
 
 ## Motivation
-When researching address forms for our project Re:Share, we came across the problem that addresses are constructed differently all over the world. The standard mentioned in the link above aims to solve this problem. However in constructing a frontend to match this kind of data model, we realised that this must be a problem that crops up a lot, and so decided to write as standalone code as possible, so that our solution can be reused in other applications.
+When researching address forms for our project ReShare, we came across the problem that addresses are constructed differently all over the world. The standard mentioned in the link above aims to solve this problem. However in constructing a frontend to match this kind of data model, we realised that this must be a problem that crops up a lot, and so decided to write as standalone code as possible, so that our solution can be reused in other applications.
 
 ## Data Model
 The particular flavour of address model our backend uses comprises of an `Address`, containing many `AddressLines` and an `AddressLabel` string.
@@ -46,12 +47,15 @@ It is heavily recommended that any potential user do some reading of the standar
 
 :warning: This backend setup has an important restriction, in that each address is supposed to be limited to **ONE** of any given type of `AddressLine`. The ways in which the various types can be used is expanded on in the standard. :warning:
 
-### Backend particulars
-It is worth mentioning here that our backend solution is built in a way such that `POST` requests are cumulative, and so instead of removing a field from a form, we send along the field with a `_delete: true` flag. This will likely not be universal, and so you may need to write your own interpreters for the form's output.
+### Dealing with deletion registration
+We have built this in so instead of simply omitting a field from a form on deletion, we send the field with a `_delete: true` flag. This may not exactly match your backend configuration for dealing with this, and so you may need to write your own interpreters for the form's output.
 
 ## The plugin
-Each plugin, say `@folio/address-plugin-generic` or `@folio/address-plugin-usa` is named using the ISO standard 3 character country name as found [here](https://www.iban.com/country-codes).
-The plugins comprise of three main parts. 
+Each plugin, say `@folio/address-plugin-generic` or `@folio/address-plugin-north-america`, is named for a particular "sensible" domain sharing an address format.
+For example the addresses of the US and Canada are similar, up to field names, and so it makes sense to bundle these together. Similarly most of the British Isles share an address format, and so there is a single plugin for those.
+The definition of sensible is really up to whoever is writing the particular plugin, but a good rule of thumb would be to stick within continents at the highest level, and nations at the lowest level.
+
+A plugin shouldn't have to be smart enough to deal with hundreds of address formats, `address-plugin-africa` is probably too ambitious of a scope, but should be smart enough to deal with changes within a nation, you don't want 4 plugins `address-plugin-foo-north`, `address-plugin-foo-south`, `address-plugin-foo-east`, `address-plugin-foo-west`. That should be dealt with internally.
 
 ### AddressFields
 First and foremost is an `AddressFields` component, which returns a collection of [`final-form`](https://final-form.org/docs/final-form/getting-started) Fields, ready for insertion into an existing `Form`. (At some point in the future we may include a basic `Form` wrapper along with `address-utils`, but this is not in place yet).
@@ -67,15 +71,24 @@ address: {
 and so on. There are some exceptions to this, which individual plugin READMEs should detail.
 
 #### Props
-`AddressField` takes 4 props:
+`AddressField` takes 5 props:
 - country
 - name
 - requiredValidator
 - savedAddress
 - textFieldComponent
 
-`country` is what the form will use to display correct field names where they happen to differ.
+**Country**
+In those cases where a single plugin is used for multiple different countries, the `country` prop will be used to call the correct field labels. For example in `address-plugin-north-america` passing `country="Canada"` will result in the `AdministrativeArea` field being labelled `Province`, and passing `country="USA"` will result in `AdministrativeArea` field being labelled `State`.
 
+This happens via React-Intl's `FormattedMessage` component. Wherever a plugin's field names may need to change country by country, the field labels should be called in the following way:
+```
+label={<FormattedMessage  id={`ui-address-plugin-north-america.${country}.locality`}  />}
+```
+The acceptable inputs for `country` here should match the outputted `listOfSupportedCountries`.
+For 
+
+**Name**
 `name` is for use inside an existing form. For example you might want to call:
 
 ```
@@ -88,7 +101,7 @@ if these address forms sit within a larger form, or `name={"address[index]}` if 
 
 This `name` will be prepended to the field names, such as `"${name}.locality"` etc.
 
-
+**RequiredValidator**
 `requiredValidator` takes a function, which will be run on each field marked as `required`. A simple example might be
 
 ```
@@ -98,6 +111,7 @@ const  required = value => (
 ```
 This would then flag any `required` fields missing data with the text `missing value` on submittal.
 
+**TextFieldComponent**
 `textFieldComponent` is what the Field will use to display an input box. Simplest case is 
 ```
 <plugin.AddressField
@@ -107,6 +121,7 @@ This would then flag any `required` fields missing data with the text `missing v
 ```
 This will use finalForm's built in `input`. You can pass a custom component here if you wish.
 
+**SavedAddress**
 Finally `savedAddress` currently expects an address of the [correct shape](#address-shape), which it will then pass to `backendToFields` to use as initial values for the fields.
 
 #### Field labels
@@ -181,4 +196,3 @@ As mentioned above, this is really a _set_ of plugins and components, so I'll in
  - [address-utils](https://github.com/openlibraryenvironment/address-utils/blob/master/README.md)
  - [address-plugin-north-america](https://github.com/openlibraryenvironment/address-plugin-north-america/blob/master/README.md)
  - [address-plugin-british-isles](https://github.com/openlibraryenvironment/address-plugin-british-isles/blob/master/README.md)
-
