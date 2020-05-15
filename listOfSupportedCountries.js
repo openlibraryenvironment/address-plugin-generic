@@ -1,2 +1,3 @@
-const listOfSupportedCountries = ["generic"]
+const listOfSupportedCountries = ['generic'];
+
 export default listOfSupportedCountries;
