@@ -1,13 +1,13 @@
 const fieldOrder = {
-  0: "Department",
-  1: "Premise",
-  2: "Thoroughfare",
-  3: "PostalCodeOrTown",
-  4: "Locality",
-  5: "AdministrativeArea",
-  6: "PostalCode",
-  7: "PostBox",
-  8: "PostOffice",
-  9: "Country"
+  "Department": 0,
+  "Premise": 1,
+  "Thoroughfare": 2,
+  "PostalCodeOrTown": 3,
+  "Locality": 4,
+  "AdministrativeArea": 5,
+  "PostalCode": 6,
+  "PostBox": 7,
+  "PostOffice": 8,
+  "Country": 9
 }
 export default fieldOrder;
