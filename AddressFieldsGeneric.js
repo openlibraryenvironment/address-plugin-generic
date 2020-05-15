@@ -101,6 +101,18 @@ class AddressFieldsGeneric extends React.Component {
             />
           </Col>
         </Row>
+        <Row>
+          <Col xs={12}>
+            <AddressTextField
+              name={name ? `${name}.country` : "country"}
+              label={<FormattedMessage id="ui-address-plugin-generic.country" />}
+              component={textFieldComponent}
+              required={true}
+              validator={requiredValidator}
+              initialValue={initialValues.country}
+            />
+          </Col>
+        </Row>
       </>
     );
   }

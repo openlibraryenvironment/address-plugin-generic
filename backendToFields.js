@@ -12,6 +12,7 @@ const backendToFields = (address) => {
   const postalCode = getExistingLineField(address.lines, 'postalcode')?.value
   const postBox = getExistingLineField(address.lines, 'postbox')?.value
   const postOffice = getExistingLineField(address.lines, 'postoffice')?.value
+  const country = getExistingLineField(address.lines, 'country')?.value
 
   if (department) {
     addressFields.department = department;
@@ -39,6 +40,9 @@ const backendToFields = (address) => {
   }
   if (postOffice) {
     addressFields.postOffice = postOffice;
+  }
+  if (country) {
+    addressFields.country = country;
   }
 
   return addressFields;

@@ -1,4 +1,6 @@
 {
+  "countryCode.generic": "Generic",
+
   "department": "Department",
   "premise": "Premise",
   "thoroughfare": "Thoroughfare",
@@ -7,5 +9,6 @@
   "postalCodeOrTown": "Town",
   "postBox" : "Post box",
   "postalCode": "Postal code",
-  "postOffice": "Post office"
+  "postOffice": "Post office",
+  "country": "Country"
 }
