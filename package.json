@@ -1,7 +1,11 @@
 {
+  "//": [
+     "Devs - remember that in the folio convention is that the version listed here is the version we are working towards",
+     "It is important in the release process that this repository is tagged and pushed and then a new commit made to advance the version"
+  ],
   "name": "@folio/address-plugin-generic",
   "description": "Plugin to render a generic address form",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "scripts": {
     "lint": "eslint ."
   },
