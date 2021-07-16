@@ -5,7 +5,7 @@
   ],
   "name": "@folio/address-plugin-generic",
   "description": "Plugin to render a generic address form",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "scripts": {
     "lint": "eslint ."
   },
